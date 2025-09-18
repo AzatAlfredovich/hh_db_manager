@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import List, Tuple
 
 import psycopg2
@@ -5,7 +6,33 @@ import psycopg2
 from config import DB_CONFIG
 
 
-class DBManager:
+class DBManager_abstract(ABC):
+    """
+    Абстрактный класс для управления данными в базе данных
+    """
+
+    @abstractmethod
+    def get_companies_and_vacancies_count(self):
+        pass
+
+    @abstractmethod
+    def get_all_vacancies(self):
+        pass
+
+    @abstractmethod
+    def get_avg_salary(self):
+        pass
+
+    @abstractmethod
+    def get_vacancies_with_higher_salary(self):
+        pass
+
+    @abstractmethod
+    def get_vacancies_with_keyword(self):
+        pass
+
+
+class DBManager(DBManager_abstract):
     """Класс для управления данными в базе данных"""
 
     def __init__(self):
